@@ -1,5 +1,6 @@
+"use client";
+
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import {
   Heart,
   Smartphone,
@@ -32,7 +33,7 @@ import {
   ChevronRight,
   MessageCircle
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -135,23 +136,6 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
-      <Helmet>
-        <title>Platform Donasi Online White-Label untuk NGO & Masjid - DonasiOnline</title>
-        <meta
-          name="description"
-          content="Bangun platform donasi online atas nama lembaga Anda sendiri, tanpa potongan persentase, dengan ekosistem aplikasi donatur, affiliate, dan dashboard admin yang lengkap."
-        />
-        <meta
-          property="og:title"
-          content="Platform Donasi Online White-Label untuk NGO & Masjid - DonasiOnline"
-        />
-        <meta
-          property="og:description"
-          content="Bangun platform donasi online atas nama lembaga Anda sendiri, tanpa potongan persentase, dengan ekosistem aplikasi donatur, affiliate, dan dashboard admin yang lengkap."
-        />
-        <meta property="og:image" content="https://images.unsplash.com/photo-1593113589914-075990116daa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
-        <meta property="og:type" content="website" />
-      </Helmet>
 
       {/* 1. NAVBAR */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-6'}`}>
@@ -168,7 +152,7 @@ export default function LandingPage() {
             <a href="#solusi" className="hover:text-[#10B16F] transition-colors">Solusi</a>
             <a href="#fitur" className="hover:text-[#10B16F] transition-colors">Fitur Ekosistem</a>
             <a href="#harga" className="hover:text-[#10B16F] transition-colors">Harga Berlangganan</a>
-            <Link to="/marketing" target="_blank" rel="noopener noreferrer" className="hover:text-[#10B16F] text-[#10B16F] transition-colors font-bold flex items-center gap-1">Gabung Partner</Link>
+            <Link href="/marketing" target="_blank" rel="noopener noreferrer" className="hover:text-[#10B16F] text-[#10B16F] transition-colors font-bold flex items-center gap-1">Gabung Partner</Link>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
@@ -191,7 +175,7 @@ export default function LandingPage() {
           <a href="#solusi" onClick={() => setMobileMenuOpen(false)} className="border-b border-slate-100 pb-4">Solusi DonasiOnline</a>
           <a href="#fitur" onClick={() => setMobileMenuOpen(false)} className="border-b border-slate-100 pb-4">Fitur Ekosistem</a>
           <a href="#harga" onClick={() => setMobileMenuOpen(false)} className="border-b border-slate-100 pb-4">Harga Berlangganan</a>
-          <Link to="/marketing" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="border-b border-slate-100 pb-4 text-[#10B16F]">Gabung Partner Edukasi</Link>
+          <Link href="/marketing" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="border-b border-slate-100 pb-4 text-[#10B16F]">Gabung Partner Edukasi</Link>
           <button className="bg-[#10B16F] text-white py-4 rounded-xl mt-4 shadow-lg">Jadwalkan Demo</button>
         </div>
       )}
@@ -397,7 +381,7 @@ export default function LandingPage() {
               ))}
             </ul>
             <div className="mt-8">
-              <a href="/demo/donasi" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#10B16F] hover:bg-[#0e9f63] text-white px-8 py-4 rounded-full font-bold transition-transform active:scale-95 shadow-lg shadow-[#10B16F]/30">
+              <a href="/donasi" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#10B16F] hover:bg-[#0e9f63] text-white px-8 py-4 rounded-full font-bold transition-transform active:scale-95 shadow-lg shadow-[#10B16F]/30">
                 Lihat Demo <ArrowRight size={20} />
               </a>
             </div>
@@ -432,7 +416,7 @@ export default function LandingPage() {
               ))}
             </ul>
             <div className="mt-8">
-              <a href="/demo/affiliate" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#10B16F] hover:bg-[#0e9f63] text-white px-8 py-4 rounded-full font-bold transition-transform active:scale-95 shadow-lg shadow-[#10B16F]/30">
+              <a href="/affiliate" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#10B16F] hover:bg-[#0e9f63] text-white px-8 py-4 rounded-full font-bold transition-transform active:scale-95 shadow-lg shadow-[#10B16F]/30">
                 Lihat Demo <ArrowRight size={20} />
               </a>
             </div>
@@ -526,7 +510,7 @@ export default function LandingPage() {
               ))}
             </ul>
             <div className="mt-8">
-              <a href="/demo/admin" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#10B16F] hover:bg-[#0e9f63] text-white px-8 py-4 rounded-full font-bold transition-transform active:scale-95 shadow-lg shadow-[#10B16F]/30">
+              <a href="/admin" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#10B16F] hover:bg-[#0e9f63] text-white px-8 py-4 rounded-full font-bold transition-transform active:scale-95 shadow-lg shadow-[#10B16F]/30">
                 Lihat Demo <ArrowRight size={20} />
               </a>
             </div>
@@ -659,7 +643,7 @@ export default function LandingPage() {
             <a href="https://wa.me/6281462206437?text=Assalamualaikum%20tim%20donasi%20online%20saya%20mau%20konsultasi" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-[#10B16F] hover:bg-[#0e9f63] text-white px-10 py-5 rounded-full font-black text-lg transition-transform active:scale-95 shadow-[0_10px_30px_rgba(16,177,111,0.3)]">
               Konsultasi & Demo Gratis
             </a>
-            <Link to="/marketing" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-emerald-50 border-2 border-emerald-200 hover:border-[#10B16F] hover:bg-emerald-100 text-emerald-800 px-10 py-5 rounded-full font-bold text-lg transition-colors flex justify-center items-center gap-2">
+            <Link href="/marketing" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-emerald-50 border-2 border-emerald-200 hover:border-[#10B16F] hover:bg-emerald-100 text-emerald-800 px-10 py-5 rounded-full font-bold text-lg transition-colors flex justify-center items-center gap-2">
               <Zap size={20} className="text-[#10B16F] fill-[#10B16F]" /> Gabung Jadi Partner
             </Link>
           </div>

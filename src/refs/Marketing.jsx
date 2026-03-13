@@ -1,5 +1,6 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import {
     Heart,
     Clock,
@@ -102,14 +103,6 @@ export default function MERecruitmentPage() {
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-800 selection:bg-[#10B16F] selection:text-white">
-            <Helmet>
-                <title>Program Mitra Edukasi-DonasiOnline</title>
-                <meta name="description" content="Bergabunglah sebagai Mitra Edukasi DonasiOnline dan bantu NGO bertransformasi digital sambil mendapatkan potensi penghasilan tak terbatas." />
-                <meta property="og:title" content="Program Mitra Edukasi-DonasiOnline" />
-                <meta property="og:description" content="Bergabunglah sebagai Mitra Edukasi DonasiOnline dan bantu NGO bertransformasi digital sambil mendapatkan potensi penghasilan tak terbatas." />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
-                <meta property="og:type" content="website" />
-            </Helmet>
 
             {/* 1. NAVBAR */}
             <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'py-4 bg-white/80 backdrop-blur-lg shadow-sm' : 'py-6 bg-transparent'} `}>

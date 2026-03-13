@@ -1,5 +1,6 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from 'react';
-import { Helmet } from 'react-helmet-async';
 import {
   Home,
   Search,
@@ -350,7 +351,7 @@ export default function App() {
   // --- LOGIC HANDLERS ---
   const toggleDonationMode = (mode) => {
     setDonationMode(mode);
-    if (mode === 'package') {
+    if (mode === 'package' && selectedCampaign) {
       setDonationData(prev => ({ ...prev, amount: packageQty * selectedCampaign.packagePrice, customAmount: '' }));
     } else {
       setDonationData(prev => ({ ...prev, amount: 0, customAmount: '' }));
@@ -359,7 +360,7 @@ export default function App() {
 
   const handlePackageChange = (val, isAbsolute = false) => {
     const newQty = isAbsolute ? val : packageQty + val;
-    if (newQty >= 1) {
+    if (newQty >= 1 && selectedCampaign) {
       setPackageQty(newQty);
       setDonationData(prev => ({ ...prev, amount: newQty * selectedCampaign.packagePrice, qurbanNames: [] }));
     }
@@ -883,6 +884,7 @@ export default function App() {
   };
 
   const renderDetail = () => {
+    if (!selectedCampaign) return null;
     const progress = selectedCampaign.hasNoTarget ? 0 : (selectedCampaign.collected / selectedCampaign.target) * 100;
     return (
       <div className="flex flex-col h-full bg-white relative">
@@ -985,6 +987,7 @@ export default function App() {
 
   const renderAmount = () => {
     const camp = selectedCampaign;
+    if (!camp) return null;
 
     return (
       <div className="flex flex-col h-full bg-slate-50 relative">
@@ -1208,11 +1211,11 @@ export default function App() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 mb-6">
             <div className="mb-4">
               <label className="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap</label>
-              <input type="text" placeholder="Masukkan nama Anda" value={donationData.name} onChange={(e) => setDonationData({ ...donationData, name: e.target.value })} className="w-full bg-slate-50 border border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500" />
+              <input type="text" placeholder="Masukkan nama Anda" value={donationData.name} onChange={(e) => setDonationData({ ...donationData, name: e.target.value })} className="w-full bg-slate-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500" />
             </div>
             <div className="mb-4">
               <label className="block text-sm font-semibold text-gray-700 mb-2">Email / WhatsApp <span className="text-gray-400 font-normal">(Opsional)</span></label>
-              <input type="text" placeholder="Untuk bukti kuitansi" value={donationData.email} onChange={(e) => setDonationData({ ...donationData, email: e.target.value })} className="w-full bg-slate-50 border border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500" />
+              <input type="text" placeholder="Untuk bukti kuitansi" value={donationData.email} onChange={(e) => setDonationData({ ...donationData, email: e.target.value })} className="w-full bg-slate-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500" />
             </div>
             <div className="flex items-center justify-between pt-2 border-t border-gray-50">
               <div>
@@ -1245,7 +1248,7 @@ export default function App() {
                       placeholder={`Nama lengkap Mudhohi ke-${i + 1}`}
                       value={donationData.qurbanNames[i] || ''}
                       onChange={(e) => updateQurbanName(i, e.target.value)}
-                      className="w-full bg-slate-50 border border-gray-200 rounded-xl py-2.5 px-4 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
+                      className="w-full bg-slate-50 border border-gray-200 text-gray-900 rounded-xl py-2.5 px-4 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
                     />
                   </div>
                 ))}
@@ -1323,14 +1326,6 @@ export default function App() {
   return (
     // Memenuhi format Max-Width Desktop/Web dan Fullwidth di Mobile tanpa fake device border
     <div className="min-h-screen bg-gray-100 flex justify-center font-sans" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
-      <Helmet>
-        <title>Aplikasi Donasi - DonasiOnline</title>
-        <meta name="description" content="Aplikasi donasi putih label untuk yayasan Anda. Berdonasi dengan aman, mudah, dan transparan." />
-        <meta property="og:title" content="Aplikasi Donasi - DonasiOnline" />
-        <meta property="og:description" content="Mulai langkah kebaikan Anda hari ini. Aplikasi donasi transparan dan terpercaya." />
-        <meta property="og:image" content="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80" />
-        <meta property="og:type" content="website" />
-      </Helmet>
       <style dangerouslySetInnerHTML={{ __html: `.no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }` }} />
       <div className="w-full max-w-md h-[100dvh] bg-white relative flex flex-col sm:shadow-2xl overflow-hidden">
         {screen === 'home' && renderHome()}
