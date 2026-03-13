@@ -136,10 +136,19 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <Helmet>
-        <title>SaaS Platform Donasi Online - DonasiOnline</title>
-        <meta name="description" content="Platform Donasi Online White-Label #1 di Indonesia. Berhenti menumpang, miliki platform donasi Anda sendiri dengan ekosistem lengkap (Donor App, Affiliate, Admin Dashboard)." />
-        <meta property="og:title" content="SaaS Platform Donasi Online - DonasiOnline" />
-        <meta property="og:description" content="Platform Donasi Online White-Label #1 di Indonesia. Berhenti menumpang, miliki platform donasi Anda sendiri dengan ekosistem lengkap (Donor App, Affiliate, Admin Dashboard)." />
+        <title>Platform Donasi Online White-Label untuk NGO & Masjid - DonasiOnline</title>
+        <meta
+          name="description"
+          content="Bangun platform donasi online atas nama lembaga Anda sendiri, tanpa potongan persentase, dengan ekosistem aplikasi donatur, affiliate, dan dashboard admin yang lengkap."
+        />
+        <meta
+          property="og:title"
+          content="Platform Donasi Online White-Label untuk NGO & Masjid - DonasiOnline"
+        />
+        <meta
+          property="og:description"
+          content="Bangun platform donasi online atas nama lembaga Anda sendiri, tanpa potongan persentase, dengan ekosistem aplikasi donatur, affiliate, dan dashboard admin yang lengkap."
+        />
         <meta property="og:image" content="https://images.unsplash.com/photo-1593113589914-075990116daa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
         <meta property="og:type" content="website" />
       </Helmet>
